@@ -30,6 +30,8 @@ public class player : MonoBehaviour
     float jumpTime = 1;
     float jumpLimit = 1;
 
+
+    public Vector3 respawnPos;
     //public Vector3 currentVector;
     //public GameObject graphic;
 
@@ -39,6 +41,7 @@ public class player : MonoBehaviour
     void Start()
     {
         //camera = GameObject.FindGameObjectWithTag("cameraRig");
+        respawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -57,6 +60,7 @@ public class player : MonoBehaviour
                         GetComponent<Rigidbody>().AddForce(0, 8, 0, ForceMode.Impulse);
                         grounded = false;
                         jumpTime = 0;
+                        GetComponent<AudioSource>().Play();
                     }
                 }
 
@@ -76,6 +80,7 @@ public class player : MonoBehaviour
                     GetComponent<MeshFilter>().mesh = meshes[1];
                     justConverted = true;
                     convertTime = 0;
+                    transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
             if (justConverted)
@@ -84,6 +89,8 @@ public class player : MonoBehaviour
                 if (convertTime > convertLimit)
                 {
                     justConverted = false;
+
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }
@@ -132,6 +139,8 @@ public class player : MonoBehaviour
                     GetComponent<MeshFilter>().mesh = meshes[0];
                     justConverted = true;
                     convertTime = 0;
+
+                    transform.GetChild(0).gameObject.SetActive(true);
                 }
 
             }
@@ -139,6 +148,8 @@ public class player : MonoBehaviour
                 convertTime += Time.deltaTime;
                 if (convertTime > convertLimit) {
                     justConverted = false;
+
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }

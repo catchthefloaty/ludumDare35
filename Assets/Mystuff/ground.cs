@@ -25,7 +25,13 @@ public class ground : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            if (!col.gameObject.GetComponent<AudioSource>().isPlaying && col.gameObject.GetComponent<player>().grounded == false) { 
+            col.gameObject.GetComponent<AudioSource>().Play();
+            }
+
             col.gameObject.GetComponent<player>().grounded = true;
+
+            
         }
     }
 
