@@ -18,6 +18,12 @@ public class endScore : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetAxis("A") > 0) {
+            Application.LoadLevel("test");
+        }
+        if (Input.GetAxis("B") > 0)
+        {
+            Application.Quit();
+        }
+    }
 }
