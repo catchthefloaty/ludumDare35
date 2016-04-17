@@ -20,8 +20,11 @@ public class deathbox : MonoBehaviour {
         }
 
 
-        if (col.tag == "key") {
+        if (col.tag == "key")
+        {
+            if (!col.GetComponent<Rigidbody>().isKinematic) { 
             col.transform.position = col.GetComponent<key>().respawn;
+        }
         }
 
     }
